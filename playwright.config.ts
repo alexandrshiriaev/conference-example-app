@@ -23,6 +23,12 @@ export default defineConfig({
         trace: 'on-first-retry',
     },
 
+    webServer: {
+        command: 'npm run build && npm run start',
+        url: BASE_URL,
+        reuseExistingServer: !process.env.CI,
+    },
+
     projects: [
         {
             name: 'chromium',
