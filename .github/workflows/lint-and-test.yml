@@ -8,7 +8,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - name: install dependencies
-              run: npm ci
+              run: npm ci --force
             - name: scan files
               run: npm run lint
     e2e-test:
@@ -17,7 +17,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - name: install dependencies
-              run: npm ci
+              run: npm ci --force
             - name: install playwright browsers
               run: npx playwright install --with-deps
             - name: run playwright tests
