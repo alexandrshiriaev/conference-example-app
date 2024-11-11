@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Демонстрационный проект на Next.js и Playwright
 
-## Getting Started
+> Данное приложение является демонстрацией того, как можно протестировать веб-приложение, используя Playwright, интегрируя процесс тестирования в CI pipeline.
 
-First, run the development server:
+## Запуск приложения
 
 ```bash
+git clone https://github.com/alexandrshiriaev/conference-example-app.git
+
+cd conference-example-app
+
+npm install --force
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000), чтобы посмотреть демонстрационное приложение в браузере.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Выполнение тестов
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npx playwright test
 
-## Learn More
+# или, чтобы открыть интерфейс выполнения тестов
 
-To learn more about Next.js, take a look at the following resources:
+npx playwright test --ui
+```
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Для того, чтобы посмотреть отчёт о результатах тестирования:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npx playwright show-report
+```
