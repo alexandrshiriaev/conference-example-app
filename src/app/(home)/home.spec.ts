@@ -84,107 +84,103 @@ test.describe('check if form inputs have correct behaviour', () => {
         });
     });
 
-    test.describe('check if form inputs have correct behaviour', () => {
-        test.describe('password input has correct behaviour', () => {
-            test('should show an error message if the password is too short', async ({
-                page,
-            }) => {
-                const { passwordInput, submitButton } = getFormElements(page);
+    test.describe('password input has correct behaviour', () => {
+        test('should show an error message if the password is too short', async ({
+            page,
+        }) => {
+            const { passwordInput, submitButton } = getFormElements(page);
 
-                await passwordInput.fill('123');
+            await passwordInput.fill('123');
 
-                await passwordInput.blur();
+            await passwordInput.blur();
 
-                await submitButton.click();
+            await submitButton.click();
 
-                const errorMessage = page.locator(
-                    'text=The password must contain at least 5 characters and no more than 20',
-                );
+            const errorMessage = page.locator(
+                'text=The password must contain at least 5 characters and no more than 20',
+            );
 
-                await expect(errorMessage).toBeVisible();
-            });
+            await expect(errorMessage).toBeVisible();
+        });
 
-            test('should show an error message if the password is too long', async ({
-                page,
-            }) => {
-                const { passwordInput, submitButton } = getFormElements(page);
+        test('should show an error message if the password is too long', async ({
+            page,
+        }) => {
+            const { passwordInput, submitButton } = getFormElements(page);
 
-                await passwordInput.fill('a'.repeat(21));
-                await passwordInput.blur();
+            await passwordInput.fill('a'.repeat(21));
+            await passwordInput.blur();
 
-                await submitButton.click();
+            await submitButton.click();
 
-                const errorMessage = page.locator(
-                    'text=The password must contain at least 5 characters and no more than 20',
-                );
+            const errorMessage = page.locator(
+                'text=The password must contain at least 5 characters and no more than 20',
+            );
 
-                await expect(errorMessage).toBeVisible();
-            });
+            await expect(errorMessage).toBeVisible();
+        });
 
-            test('should not show an error message if the password is valid', async ({
-                page,
-                browserName,
-            }) => {
-                const { passwordInput, submitButton } = getFormElements(page);
+        test('should not show an error message if the password is valid', async ({
+            page,
+            browserName,
+        }) => {
+            const { passwordInput, submitButton } = getFormElements(page);
 
-                await passwordInput.fill('correctPassword123');
-                await passwordInput.blur();
+            await passwordInput.fill('correctPassword123');
+            await passwordInput.blur();
 
-                await submitButton.click();
+            await submitButton.click();
 
-                if (browserName === 'webkit') {
-                    // FIXME
-                    return;
-                }
-                const errorMessage = page.locator(
-                    'text=The password must contain at least 5 characters and no more than 20',
-                );
+            if (browserName === 'webkit') {
+                // FIXME
+                return;
+            }
+            const errorMessage = page.locator(
+                'text=The password must contain at least 5 characters and no more than 20',
+            );
 
-                await expect(errorMessage).not.toBeVisible();
-            });
+            await expect(errorMessage).not.toBeVisible();
         });
     });
 
-    test.describe('check if form inputs have correct behaviour', () => {
-        test.describe('age input has correct behaviour', () => {
-            test('should show an error message if age is less than 18', async ({
-                page,
-            }) => {
-                const { ageInput, submitButton } = getFormElements(page);
+    test.describe('age input has correct behaviour', () => {
+        test('should show an error message if age is less than 18', async ({
+            page,
+        }) => {
+            const { ageInput, submitButton } = getFormElements(page);
 
-                await ageInput.fill('17');
-                await ageInput.blur();
+            await ageInput.fill('17');
+            await ageInput.blur();
 
-                await submitButton.click();
+            await submitButton.click();
 
-                const errorMessage = page.locator(
-                    'text=You must be at least 18 years old',
-                );
+            const errorMessage = page.locator(
+                'text=You must be at least 18 years old',
+            );
 
-                await expect(errorMessage).toBeVisible();
-            });
+            await expect(errorMessage).toBeVisible();
+        });
 
-            test('should not show an error message if age is valid', async ({
-                page,
-                browserName,
-            }) => {
-                const { ageInput, submitButton } = getFormElements(page);
+        test('should not show an error message if age is valid', async ({
+            page,
+            browserName,
+        }) => {
+            const { ageInput, submitButton } = getFormElements(page);
 
-                await ageInput.fill('25');
-                await ageInput.blur();
+            await ageInput.fill('25');
+            await ageInput.blur();
 
-                await submitButton.click();
+            await submitButton.click();
 
-                if (browserName === 'webkit') {
-                    // FIXME
-                    return;
-                }
+            if (browserName === 'webkit') {
+                // FIXME
+                return;
+            }
 
-                const errorMessage = page.locator(
-                    'text=You must be at least 18 years old',
-                );
-                await expect(errorMessage).not.toBeVisible();
-            });
+            const errorMessage = page.locator(
+                'text=You must be at least 18 years old',
+            );
+            await expect(errorMessage).not.toBeVisible();
         });
     });
 });
