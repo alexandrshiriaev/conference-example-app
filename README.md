@@ -11,6 +11,8 @@ cd conference-example-app
 
 npm install --force
 
+npx playwright install
+
 npm run dev
 ```
 
